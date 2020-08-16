@@ -28,13 +28,17 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/client';
+    protected $redirectTo = '/panel/client/';
 
     /**
      * Create a new controller instance.
      *
      * @return void
      */
+    public function __construct()
+    {
+        $this->middleware('guest');
+    }
 
     /**
      * Get a validator for an incoming registration request.
@@ -48,8 +52,6 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'fone' => 'required',
-            'cpf' => 'required',
         ]);
     }
 
@@ -62,13 +64,9 @@ class RegisterController extends Controller
     protected function create(array $data)
     {
         return User::create([
-            'plano_id' => $data['plano_id'],
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role' => 'client',
-            'fone' => $data['fone'],
-            'cpf' => $data['cpf'],
         ]);
     }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Middleware;
 
-use Closure;
 use Illuminate\Support\Facades\Auth;
+use Closure;
 
 class ClientMiddleware
 {
@@ -19,6 +19,6 @@ class ClientMiddleware
         if (Auth::user()->role == 'client') {
             return $next($request);
         }
-        return redirect()->to('admin');
+        return redirect()->to('panel/admin');
     }
 }
