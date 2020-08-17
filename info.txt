@@ -1,0 +1,13 @@
+Hostinger
+Usuário: jayrosystem@gmail.com
+Senha: shutdown8600
+Coloca no domínio: jnsolucoes.tech/clinica
+
+FTP:
+host: ftp://31.170.161.51	ftp://jnsolucoesinformatica.tech
+user: u443010989.agenda 
+pass: 9gDTJVPgsNi$
+
+MYSQL:
+user: u443010989_agenda 
+pass: !F4D&y1a

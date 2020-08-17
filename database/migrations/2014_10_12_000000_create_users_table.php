@@ -19,6 +19,18 @@ class CreateUsersTable extends Migration
             $table->string('email')->unique();
             $table->string('password');
             $table->string('role')->default('client');
+            $table->string('date_nasc');
+            $table->string('idade');
+            $table->string('cpf', 20);
+            $table->string('rg', 30);
+            $table->string('peso');
+            $table->string('altura', 50);
+            $table->string('endereco');
+            $table->string('bairro');
+            $table->string('cidade');
+            $table->string('cep', 15);
+            $table->string('profissao')->nullable();
+            $table->string('fone');
             $table->rememberToken();
             $table->timestamps();
         });

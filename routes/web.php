@@ -4,6 +4,9 @@ Route::group(['prefix' => 'panel/client', 'middleware' => ['auth', 'client.check
     
     Route::get('/', 'Panel\Client\HomeController@index')->name('client.index');
     Route::get('meus-agendamentos/', 'Panel\Client\AgendamentosController@index')->name('client.agendamentos');
+    Route::get('profile/', 'Panel\Client\ProfileController@profile')->name('client.profile');
+    Route::post('profile/store/', 'Panel\Client\ProfileController@store')->name('client.store');
+
     Route::post('agendamento/store/', 'Panel\Client\AgendamentosController@store')->name('client.agendamentos.store');
     
 });
@@ -21,5 +24,3 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');

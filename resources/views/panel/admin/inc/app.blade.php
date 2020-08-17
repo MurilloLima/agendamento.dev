@@ -10,6 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>{{ config('app.name', 'Agendamento') }}</title>
+    <link rel="shortcut icon" href="{{ asset('assets/panel/dist/img/AdminLTELogo.png') }}" type="image/x-icon">
 
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="{{ asset('assets/panel/plugins/fontawesome-free/css/all.min.css') }}">

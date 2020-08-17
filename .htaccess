@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^jnsolucoesinformatica.tech/clinica$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.jnsolucoesinformatica.tech/clinica$
+RewriteCond %{REQUEST_URI} !public/ 
+RewriteRule (.*) /public/$1 [L]
