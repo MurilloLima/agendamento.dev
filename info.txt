@@ -12,3 +12,11 @@ MYSQL:
 banco: u443010989_agenda 
 user: u443010989_user  
 pass: !F4D&y1a
+
+EMAIL
+IMAP: imap.hostinger.com.br 	993 
+SMTP: smtp.hostinger.com.br 	587 
+POP3: pop.hostinger.com.br 	    995 
+
+user: send@jnsolucoesinformatica.tech 
+pass: rTF!4$wQ

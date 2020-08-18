@@ -6,6 +6,7 @@ Route::group(['prefix' => 'panel/client', 'middleware' => ['auth', 'client.check
     Route::get('meus-agendamentos/', 'Panel\Client\AgendamentosController@index')->name('client.agendamentos');
     Route::get('profile/', 'Panel\Client\ProfileController@profile')->name('client.profile');
     Route::post('user/update/', 'Panel\Client\ProfileController@user')->name('client.user.update');
+    Route::post('user/questions/', 'Panel\Client\ProfileController@questions')->name('client.user.questions');
 
     Route::post('agendamento/store/', 'Panel\Client\AgendamentosController@store')->name('client.agendamentos.store');
     

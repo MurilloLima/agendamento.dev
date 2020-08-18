@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Profile extends Model
 {
@@ -57,4 +58,5 @@ class Profile extends Model
         'voce_quebra_algum_objeto',
         'seu_desespero_e_tamanho_a_ponto_de_desejar_morrer'
     ];
+
 }

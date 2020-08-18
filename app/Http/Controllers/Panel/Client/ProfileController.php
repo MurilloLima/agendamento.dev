@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Panel\Client;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Profile;
 use App\User;
 
 class ProfileController extends Controller
@@ -13,8 +14,10 @@ class ProfileController extends Controller
     {
         $this->user = $user;
     }
+
     public function profile()
     {
+        // dd(auth()->user()->question()->get());
         return view('panel.client.pages.profile');
     }
 
@@ -38,5 +41,18 @@ class ProfileController extends Controller
             "email" => $request->get('email'),
         ]);
         return redirect()->back()->with('success', 'Seus dados foram atualizados com sucesso!');
+    }
+
+    public function questions(Request $request)
+    {
+        if (Profile::where('user_id', auth()->user()->id)->count() == 0) {
+            Profile::create($request->all());
+            return redirect()->back()->with('success', 'Dados atualizado com sucesso');
+        } else {
+            $data = Profile::where('user_id', auth()->user()->id)->first();
+            $data->update($request->all());
+            return redirect()->back()->with('success', 'Dados atualizado com sucesso');
+        }
+
     }
 }

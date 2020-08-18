@@ -161,45 +161,49 @@
                             <h3 class="card-title">Questionário</h3>
                         </div>
                         <div class="card-body">
-                            <form action="">
+                            <form action="{{ route('client.user.questions') }}" role="form" method="post">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="">Possui filhos?</label>
-
                                             <div class="form-check">
-                                                {!! Form::radio('p_filhos', 'Sim',
-                                                ['class'=>'form-check-input']) !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('p_filhos', 'Não',
-                                                ['class'=>'form-check-input']) !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::radio('p_filhos', 1, auth()->user()->question->p_filhos == 1 ?
+                                                'checked' : '', ['class'=>'form-check-input']) !!}
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('p_filhos', 0, auth()->user()->question->p_filhos == 0 ?
+                                                'checked' : '', ['class'=>'form-check-input']) !!}
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="">Idade do ultimo filho?</label>
                                         <input type="number" class="form-control" placeholder="0"
-                                            value="{{old('idade_ultimo_filho')}}" name="idade_ultimo_filho">
+                                            value="{{auth()->user()->question->idade_ultimo_filho, old('idade_ultimo_filho')}}"
+                                            name="idade_ultimo_filho">
                                     </div>
                                     <div class="col-sm-3">
                                         <div class="form-group">
                                             <label for="">Cesária?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('cesaria', 'Sim',
+                                                {!! Form::radio('cesaria', 1, auth()->user()->question->cesaria == 1 ?
+                                                'checked' : '', ['class'=>'form-check-input']) !!}
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('cesaria', 0, auth()->user()->question->cesaria == 0 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input']) !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('cesaria', 'Não',
-                                                ['class'=>'form-check-input']) !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-3">
                                         <label for="">Quantas cesária?</label>
                                         <input type="number" class="form-control" placeholder="0"
-                                            value="{{old('qtd_cesaria')}}" name="qtd_cesaria">
+                                            value="{{auth()->user()->question->qtd_cesaria, old('qtd_cesaria')}}"
+                                            name="qtd_cesaria">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -208,19 +212,24 @@
                                             <label for="">Cirurgias Anteriores?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('cirurgias_anteriores', 'Sim',
+                                                {!! Form::radio('cirurgias_anteriores', 1,
+                                                auth()->user()->question->cirurgias_anteriores == 1 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input']) !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('cirurgias_anteriores', 'Não',
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('cirurgias_anteriores',
+                                                0,auth()->user()->question->cirurgias_anteriores == 0 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input']) !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-9">
                                         <label for="">Quais cirurgias?</label>
                                         <input type="text" class="form-control" placeholder="Quais..."
-                                            value="{{old('cirurgias_ant_quais')}}" name="cirurgias_ant_quais">
+                                            value="{{auth()->user()->question->cirurgias_ant_quais, old('cirurgias_ant_quais')}}"
+                                            name="cirurgias_ant_quais">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -229,19 +238,24 @@
                                             <label for="">Alergia a medicamentos?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('alergia_medic', 'Sim', ['class'=>'form-check-input'])
+                                                {!! Form::radio('alergia_medic',
+                                                1,auth()->user()->question->alergia_medic == 1 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('alergia_medic', 'Não', ['class'=>'form-check-input'])
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('alergia_medic',
+                                                0,auth()->user()->question->alergia_medic == 0 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-9">
                                         <label for="">Quais medicamentos?</label>
                                         <input type="text" class="form-control" placeholder="Quais..."
-                                            value="{{old('alergia_medic_quais')}}" name="alergia_medic_quais">
+                                            value="{{auth()->user()->question->alergia_medic_quais, old('alergia_medic_quais')}}"
+                                            name="alergia_medic_quais">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -250,12 +264,15 @@
                                             <label for="">Fumante?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('fuma', 'Sim', ['class'=>'form-check-input'])
+                                                {!! Form::radio('fuma', 1, auth()->user()->question->fuma == 1 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('fuma', 'Não', ['class'=>'form-check-input'])
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+
+                                                {!! Form::radio('fuma', 0, auth()->user()->question->fuma == 0 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -264,12 +281,16 @@
                                             <label for="">Hipertensão?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('hipertensao', 'Sim', ['class'=>'form-check-input'])
+                                                {!! Form::radio('hipertensao', 1, auth()->user()->question->hipertensao
+                                                == 1 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('hipertensao', 'Não', ['class'=>'form-check-input'])
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('hipertensao', 0, auth()->user()->question->hipertensao
+                                                == 0 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -278,12 +299,14 @@
                                             <label for="">Diabetes?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('diabetes', 'Sim', ['class'=>'form-check-input'])
+                                                {!! Form::radio('diabetes', 1, auth()->user()->question->diabetes == 1 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('diabetes', 'Não', ['class'=>'form-check-input'])
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('diabetes', 0, auth()->user()->question->diabetes == 0 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -292,12 +315,14 @@
                                             <label for="">Trombose?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('trombose', 'Sim', ['class'=>'form-check-input'])
+                                                {!! Form::radio('trombose', 1, auth()->user()->question->trombose == 1 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('trombose', 'Não', ['class'=>'form-check-input'])
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('trombose', 0, auth()->user()->question->trombose == 0 ?
+                                                'checked' : '', ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
@@ -307,21 +332,26 @@
                                         <div class="form-group">
                                             <label for="">Faz uso de algum medicamento?</label>
                                             <div class="form-check">
-                                                {!! Form::radio('usa_medicamentos', 'Sim',
+                                                {!! Form::radio('usa_medicamentos', 1,
+                                                auth()->user()->question->usa_medicamentos == 1 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('usa_medicamentos', 'Não',
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('usa_medicamentos', 0,
+                                                auth()->user()->question->usa_medicamentos == 0 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-9">
                                         <label for="">Quais medicamentos?</label>
                                         <input type="text" class="form-control" placeholder="Quais..."
-                                            value="{{old('usa_medicamentos_quais')}}" name="usa_medicamentos_quais">
+                                            value="{{auth()->user()->question->usa_medicamentos_quais, old('usa_medicamentos_quais')}}"
+                                            name="usa_medicamentos_quais">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -329,21 +359,26 @@
                                         <div class="form-group">
                                             <label for="">Já fez cirurgia plástica antes?</label>
                                             <div class="form-check">
-                                                {!! Form::radio('cirurgia_plastica', 'Sim',
+                                                {!! Form::radio('cirurgia_plastica', 1,
+                                                auth()->user()->question->cirurgia_plastica == 1 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('cirurgia_plastica', 'Não',
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('cirurgia_plastica', 0,
+                                                auth()->user()->question->cirurgia_plastica == 0 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-9">
                                         <label for="">Quais?</label>
                                         <input type="text" class="form-control" placeholder="Quais..."
-                                            value="{{old('cirurgia_plastica_quais')}}" name="cirurgia_plastica_quais">
+                                            value="{{auth()->user()->question->cirurgia_plastica_quais, old('cirurgia_plastica_quais')}}"
+                                            name="cirurgia_plastica_quais">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -352,21 +387,25 @@
                                             <label for="">Já teve algum problema anestésico?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('problema_anestesico', 'Sim',
+                                                {!! Form::radio('problema_anestesico', 1,
+                                                auth()->user()->question->problema_anestesico == 1 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('problema_anestesico', 'Não',
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('problema_anestesico', 0,
+                                                auth()->user()->question->problema_anestesico == 0 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
                                         <label for="">Qual?</label>
                                         <input type="text" class="form-control" placeholder="Quais..."
-                                            value="{{old('problema_anestesico_quais')}}"
+                                            value="{{auth()->user()->question->problema_anestesico_quais, old('problema_anestesico_quais')}}"
                                             name="problema_anestesico_quais">
                                     </div>
                                 </div>
@@ -376,21 +415,25 @@
                                             <label for="">Faz uso de anorexígenos?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('uso_de_anorexigenos', 'Sim',
+                                                {!! Form::radio('uso_de_anorexigenos', 1,
+                                                auth()->user()->question->uso_de_anorexigenos == 1 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('uso_de_anorexigenos', 'Não',
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('uso_de_anorexigenos', 0,
+                                                auth()->user()->question->uso_de_anorexigenos == 0 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-9">
                                         <label for="">Qual?</label>
                                         <input type="text" class="form-control" placeholder="Quais..."
-                                            value="{{old('uso_de_anorexigenos_quais')}}"
+                                            value="{{auth()->user()->question->uso_de_anorexigenos_quais, old('uso_de_anorexigenos_quais')}}"
                                             name="uso_de_anorexigenos_quais">
                                     </div>
                                 </div>
@@ -400,21 +443,26 @@
                                             <label for="">Faz uso de hormônios?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('uso_de_hormonios', 'Sim',
+                                                {!! Form::radio('uso_de_hormonios', 1,
+                                                auth()->user()->question->uso_de_hormonios == 1 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('uso_de_hormonios', 'Não',
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('uso_de_hormonios', 0,
+                                                auth()->user()->question->uso_de_hormonios == 0 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-9">
                                         <label for="">Qual?</label>
                                         <input type="text" class="form-control" placeholder="Quais..."
-                                            value="{{old('uso_de_hormonios_quais')}}" name="uso_de_hormonios_quais">
+                                            value="{{auth()->user()->question->uso_de_hormonios_quais, old('uso_de_hormonios_quais')}}"
+                                            name="uso_de_hormonios_quais">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -423,21 +471,25 @@
                                             <label for="">Toma anticoncepcional?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('toma_anticoncepcional', 'Sim',
+                                                {!! Form::radio('toma_anticoncepcional', 1,
+                                                auth()->user()->question->toma_anticoncepcional == 1 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('toma_anticoncepcional', 'Não',
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('toma_anticoncepcional', 0,
+                                                auth()->user()->question->toma_anticoncepcional == 0 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-9">
                                         <label for="">Qual?</label>
                                         <input type="text" class="form-control" placeholder="Quais..."
-                                            value="{{old('toma_anticoncepcional_quais')}}"
+                                            value="{{auth()->user()->question->toma_anticoncepcional_quais, old('toma_anticoncepcional_quais')}}"
                                             name="toma_anticoncepcional_quais">
                                     </div>
                                 </div>
@@ -447,21 +499,26 @@
                                             <label for="">Já teve COVID 19?</label>
 
                                             <div class="form-check">
-                                                {!! Form::radio('teve_covid_19', 'Sim',
+                                                {!! Form::radio('teve_covid_19', 1,
+                                                auth()->user()->question->teve_covid_19 == 1 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Sim</label>
-                                                {!! Form::radio('teve_covid_19', 'Não',
+                                                {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                {!! Form::radio('teve_covid_19', 0,
+                                                auth()->user()->question->teve_covid_19 == 0 ?
+                                                'checked' : '',
                                                 ['class'=>'form-check-input'])
                                                 !!}
-                                                <label for="" class="form-check-label">Não</label>
+                                                {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                             </div>
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <label for="">Quanto tempo?</label>
                                         <input type="text" class="form-control" placeholder="0"
-                                            value="{{old('teve_covid_19_qtd_tempo')}}" name="teve_covid_19_qtd_tempo">
+                                            value="{{auth()->user()->question->teve_covid_19_qtd_tempo, old('teve_covid_19_qtd_tempo')}}"
+                                            name="teve_covid_19_qtd_tempo">
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="form-group">
@@ -476,20 +533,25 @@
                                         <label for="">Você está separado? </label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('voce_esta_separado', 'Sim',
+                                            {!! Form::radio('voce_esta_separado', 1,
+                                            auth()->user()->question->voce_esta_separado == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('voce_esta_separado', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('voce_esta_separado', 0,
+                                            auth()->user()->question->voce_esta_separado == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                     <div class="col-sm-2">
                                         <label for="">A quanto tempo?</label>
                                         <input type="text" class="form-control" placeholder="Tempo..."
-                                            value="{{old('expectativa')}}" name="expectativa">
+                                            value="{{auth()->user()->question->expectativa, old('expectativa')}}"
+                                            name="expectativa">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -497,20 +559,24 @@
                                         <label for="">Existe alguém contra você operar?</label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('alguem_contra_vc_operar', 'Sim',
+                                            {!! Form::radio('alguem_contra_vc_operar', 1,
+                                            auth()->user()->question->alguem_contra_vc_operar == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('alguem_contra_vc_operar', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('alguem_contra_vc_operar', 0,
+                                            auth()->user()->question->alguem_contra_vc_operar == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
                                         <label for="">Quém?</label>
                                         <input type="text" class="form-control" placeholder="Quém..."
-                                            value="{{old('alguem_contra_vc_operar_quem')}}"
+                                            value="{{auth()->user()->question->alguem_contra_vc_operar_quem, old('alguem_contra_vc_operar_quem')}}"
                                             name="alguem_contra_vc_operar_quem">
                                     </div>
                                 </div>
@@ -519,7 +585,8 @@
                                         <label for="">Qual sua expectativa sobre a cirurgia? Em relação ao
                                             resultado?</label>
                                         <input type="text" class="form-control" placeholder="Especifique..."
-                                            value="{{old('expectativa')}}" name="expectativa">
+                                            value="{{auth()->user()->question->expectativa, old('expectativa')}}"
+                                            name="expectativa">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -527,20 +594,24 @@
                                         <label for="">Alguma perda recente? </label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('alguma_perda_recente', 'Sim',
+                                            {!! Form::radio('alguma_perda_recente', 1,
+                                            auth()->user()->question->alguma_perda_recente == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('alguma_perda_recente', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('alguma_perda_recente', 0,
+                                            auth()->user()->question->alguma_perda_recente == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                     <div class="col-sm-8">
                                         <label for="">Qual perda?</label>
                                         <input type="text" class="form-control" placeholder="Especifique..."
-                                            value="{{old('alguma_perda_recente_qual')}}"
+                                            value="{{auth()->user()->question->alguma_perda_recente_qual, old('alguma_perda_recente_qual')}}"
                                             name="alguma_perda_recente_qual">
                                     </div>
                                 </div>
@@ -550,28 +621,33 @@
                                             psiquiátrica ou psicológica?</label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('fez_tratamento_para_depressao', 'Sim',
+                                            {!! Form::radio('fez_tratamento_para_depressao', 1,
+                                            auth()->user()->question->fez_tratamento_para_depressao == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('fez_tratamento_para_depressao', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('fez_tratamento_para_depressao', 0,
+                                            auth()->user()->question->fez_tratamento_para_depressao == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <label for="">Quanto tempo ?</label>
                                         <input type="text" class="form-control" placeholder="Tempo..."
-                                            value="{{old('fez_tratamento_para_depressao_qtd_tempo')}}"
+                                            value="{{auth()->user()->question->fez_tratamento_para_depressao_qtd_tempo, old('fez_tratamento_para_depressao_qtd_tempo')}}"
                                             name="fez_tratamento_para_depressao_qtd_tempo">
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-sm-12">
                                         <label for="">Como você se considera emocionalmente?</label>
-                                        <input type="text" class="form-control" placeholder="Tempo..."
-                                            value="{{old('avaliar_emocionalmente')}}" name="avaliar_emocionalmente">
+                                        <input type="text" class="form-control" placeholder=""
+                                            value="{{auth()->user()->question->avaliar_emocionalmente, old('avaliar_emocionalmente')}}"
+                                            name="avaliar_emocionalmente">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -580,14 +656,18 @@
                                             é diferente?</label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('voce_esta_seriamente_preocupado', 'Sim',
+                                            {!! Form::radio('voce_esta_seriamente_preocupado', 1,
+                                            auth()->user()->question->voce_esta_seriamente_preocupado == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('voce_esta_seriamente_preocupado', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('voce_esta_seriamente_preocupado', 0,
+                                            auth()->user()->question->voce_esta_seriamente_preocupado == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -596,14 +676,18 @@
                                         <label for=""> Você se observa no espelho de forma atenta e repetitiva? </label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('voce_se_observa_no_espelho', 'Sim',
+                                            {!! Form::radio('voce_se_observa_no_espelho', 1,
+                                            auth()->user()->question->voce_se_observa_no_espelho == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('voce_se_observa_no_espelho', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('voce_se_observa_no_espelho', 0,
+                                            auth()->user()->question->voce_se_observa_no_espelho == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -613,14 +697,18 @@
                                             preocupado?</label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('voce_evita_olharse_no_espelho', 'Sim',
+                                            {!! Form::radio('voce_evita_olharse_no_espelho', 1,
+                                            auth()->user()->question->voce_evita_olharse_no_espelho == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('voce_evita_olharse_no_espelho', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('voce_evita_olharse_no_espelho', 0,
+                                            auth()->user()->question->voce_evita_olharse_no_espelho == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -630,14 +718,18 @@
                                             falando ou zombando de ser defeito?</label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('pessoas_possam_estar_observando', 'Sim',
+                                            {!! Form::radio('pessoas_possam_estar_observando', 1,
+                                            auth()->user()->question->pessoas_possam_estar_observando == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('pessoas_possam_estar_observando', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('pessoas_possam_estar_observando', 0,
+                                            auth()->user()->question->pessoas_possam_estar_observando == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -647,14 +739,18 @@
                                             roupas?</label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('voce_tenta_esconder_ou_camuflar', 'Sim',
+                                            {!! Form::radio('voce_tenta_esconder_ou_camuflar', 1,
+                                            auth()->user()->question->voce_tenta_esconder_ou_camuflar == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('voce_tenta_esconder_ou_camuflar', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('voce_tenta_esconder_ou_camuflar', 0,
+                                            auth()->user()->question->voce_tenta_esconder_ou_camuflar == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -666,16 +762,22 @@
                                         <div class="form-check">
                                             {!!
                                             Form::radio('acredita_que_uma_cirurgia_plastica_podera_mudar_radicalmente',
-                                            'Sim',
+                                            1,
+                                            auth()->user()->question->acredita_que_uma_cirurgia_plastica_podera_mudar_radicalmente
+                                            == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
                                             {!!
                                             Form::radio('acredita_que_uma_cirurgia_plastica_podera_mudar_radicalmente',
-                                            'Não',
+                                            0,
+                                            auth()->user()->question->acredita_que_uma_cirurgia_plastica_podera_mudar_radicalmente
+                                            == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -684,14 +786,18 @@
                                         <label for="">Você negligenciou suas atividades por causa do defeito?</label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('voce_negligenciou_suas_atividades', 'Sim',
+                                            {!! Form::radio('voce_negligenciou_suas_atividades', 1,
+                                            auth()->user()->question->voce_negligenciou_suas_atividades == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('voce_negligenciou_suas_atividades', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('voce_negligenciou_suas_atividades', 0,
+                                            auth()->user()->question->voce_negligenciou_suas_atividades == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -702,14 +808,18 @@
                                             trabalho?</label>
 
                                         <div class="form-check">
-                                            {!! Form::radio('voce_negligenciou_suas_atividades', 'Sim',
+                                            {!! Form::radio('este_defeito_lhe_causa_raiva', 1,
+                                            auth()->user()->question->este_defeito_lhe_causa_raiva == 1 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Sim</label>
-                                            {!! Form::radio('voce_negligenciou_suas_atividades', 'Não',
+                                            {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                            {!! Form::radio('este_defeito_lhe_causa_raiva', 0,
+                                            auth()->user()->question->este_defeito_lhe_causa_raiva == 0 ?
+                                            'checked' : '',
                                             ['class'=>'form-check-input'])
                                             !!}
-                                            <label for="" class="form-check-label">Não</label>
+                                            {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
                                         </div>
                                     </div>
                                 </div>
@@ -717,8 +827,9 @@
                                     <div class="col-sm-12">
                                         <label for="">Nesses momentos, você quebra algum objeto, dá murros ou chuta
                                             paredes e portas? </label>
-                                        <input type="text" class="form-control" placeholder="Tempo..."
-                                            value="{{old('voce_quebra_algum_objeto')}}" name="voce_quebra_algum_objeto">
+                                        <input type="text" class="form-control" placeholder=""
+                                            value="{{auth()->user()->question->voce_quebra_algum_objeto, old('voce_quebra_algum_objeto')}}"
+                                            name="voce_quebra_algum_objeto">
                                     </div>
                                 </div>
                                 <div class="row">
@@ -726,7 +837,7 @@
                                         <label for="">Seu desespero é tamanho a ponto de desejar morrer, ferir-se ou
                                             prejudicar-se em função desse desespero? </label>
                                         <input type="text" class="form-control" placeholder="Tempo..."
-                                            value="{{old('seu_desespero_e_tamanho_a_ponto_de_desejar_morrer')}}"
+                                            value="{{auth()->user()->question->seu_desespero_e_tamanho_a_ponto_de_desejar_morrer, old('seu_desespero_e_tamanho_a_ponto_de_desejar_morrer')}}"
                                             name="seu_desespero_e_tamanho_a_ponto_de_desejar_morrer">
                                     </div>
                                 </div>
