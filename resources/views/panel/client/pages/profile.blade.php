@@ -33,15 +33,14 @@
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
-                            <form action="{{ route('client.store') }}" role="form" method="post">
+                            <form action="{{ route('client.user.update') }}" role="form" method="post">
                                 {{ csrf_field() }}
-                                <input type="hidden" value="{{auth()->user()->id}}" name="user_id">
                                 <div class="row">
                                     <div class="col-sm-6">
                                         <!-- text input -->
                                         <div class="form-group">
                                             <label>Nome</label>
-                                            <input type="text" class="form-control"
+                                            <input type="text" class="form-control" name="name"
                                                 value="{{auth()->user()->name, old('name')}}" placeholder="Seu nome...">
                                         </div>
                                     </div>

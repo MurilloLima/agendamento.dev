@@ -23,7 +23,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
@@ -80,9 +80,8 @@
             @yield('content')
         </main>
     </div>
-    
     <script src="{{ asset('assets/panel/plugins/jquery/jquery.min.js') }}"></script>
-
+    <!-- Bootstrap -->
     <script src="{{ asset('js/jquery.mask.js')}}"></script>
     <script>
         $('.date').mask('00/00/0000');

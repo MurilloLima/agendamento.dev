@@ -9,5 +9,6 @@ user: u443010989.agenda
 pass: 9gDTJVPgsNi$
 
 MYSQL:
-user: u443010989_agenda 
+banco: u443010989_agenda 
+user: u443010989_user  
 pass: !F4D&y1a
