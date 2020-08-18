@@ -18,6 +18,7 @@ class CreateagendasTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->text('content')->nullable();
+            $table->string('data_consulta')->nullable();
             $table->string('status')->default('Em analise');
             $table->timestamps();
         });

@@ -56,7 +56,8 @@ class Profile extends Model
         'voce_negligenciou_suas_atividades',
         'este_defeito_lhe_causa_raiva',
         'voce_quebra_algum_objeto',
-        'seu_desespero_e_tamanho_a_ponto_de_desejar_morrer'
+        'seu_desespero_e_tamanho_a_ponto_de_desejar_morrer',
+        'status'
     ];
 
 }

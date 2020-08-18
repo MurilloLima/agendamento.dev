@@ -96,6 +96,8 @@ class CreateProfilesTable extends Migration
 
             $table->string('seu_desespero_e_tamanho_a_ponto_de_desejar_morrer')->nullable();
             
+            $table->integer('status')->default(0);
+            
             $table->timestamps();
         });
     }

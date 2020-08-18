@@ -164,6 +164,7 @@
                             <form action="{{ route('client.user.questions') }}" role="form" method="post">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                                <input type="hidden" name="status" value="1">
                                 <div class="row">
                                     <div class="col-sm-3">
                                         <div class="form-group">

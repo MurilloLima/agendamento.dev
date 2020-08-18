@@ -20,6 +20,17 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <style>
+        div#loader {
+            position: fixed;
+            left: 0px;
+            top: 0px;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: url('{{url('img/4.gif')}}') 50% 50% no-repeat white;
+        }
+    </style>
 </head>
 
 <body>
@@ -80,7 +91,7 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('assets/panel/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/panel/plugins/jquery/jquery.js') }}"></script>
     <!-- Bootstrap -->
     <script src="{{ asset('js/jquery.mask.js')}}"></script>
     <script>
@@ -130,6 +141,13 @@
             });
         $('.selectonfocus').mask("00/00/0000", {selectOnFocus: true});
         
+    </script>
+    <script>
+        // Este evendo é acionado após o carregamento da página
+        jQuery(window).load(function() {
+            //Após a leitura da pagina o evento fadeOut do loader é acionado, esta com delay para ser perceptivo em ambiente fora do servidor.
+            jQuery("#loader").fadeOut("slow");
+        });
     </script>
 </body>
 

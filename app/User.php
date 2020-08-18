@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Agenda;
 use App\Models\Profile;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -47,4 +48,9 @@ class User extends Authenticatable
         return $this->hasOne(Profile::class);
     }
 
+    public function agendamentos()
+    {
+        return $this->hasMany(Agenda::class);
+        # code...
+    }
 }

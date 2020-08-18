@@ -2,17 +2,18 @@ Hostinger
 Usuário: jayrosystem@gmail.com
 Senha: shutdown8600
 Coloca no domínio: jnsolucoes.tech/clinica
-
+---------------------------------------
 FTP:
 host: ftp://31.170.161.51	ftp://jnsolucoesinformatica.tech
 user: u443010989.agenda 
 pass: 9gDTJVPgsNi$
-
+---------------------------------------
 MYSQL:
+host: https://auth-db137.hostinger.com.br/?_ga=2.52841258.364699475.1597700561-487089661.1597080509
 banco: u443010989_agenda 
 user: u443010989_user  
 pass: !F4D&y1a
-
+----------------------------------------
 EMAIL
 IMAP: imap.hostinger.com.br 	993 
 SMTP: smtp.hostinger.com.br 	587 
@@ -20,3 +21,4 @@ POP3: pop.hostinger.com.br 	    995
 
 user: send@jnsolucoesinformatica.tech 
 pass: rTF!4$wQ
+----------------------------------------
