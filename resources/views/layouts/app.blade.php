@@ -34,6 +34,7 @@
 </head>
 
 <body>
+    <div id="loader"></div>
     <div>
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
@@ -91,7 +92,8 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('assets/panel/plugins/jquery/jquery.js') }}"></script>
+    <script src="{{ asset('js/jQuery-2.1.4.min.js') }}"></script>
+    {{-- <script src="{{ asset('assets/panel/plugins/jquery/jquery.min.js') }}"></script> --}}
     <!-- Bootstrap -->
     <script src="{{ asset('js/jquery.mask.js')}}"></script>
     <script>

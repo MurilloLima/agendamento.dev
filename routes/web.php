@@ -15,6 +15,7 @@ Route::group(['prefix' => 'panel/client', 'middleware' => ['auth', 'client.check
 Route::group(['prefix' => 'panel/admin', 'middleware' => ['auth', 'admin.check']], function () {
     Route::get('/', 'Panel\Admin\HomeController@index')->name('admin.index');
     Route::get('clients/', 'Panel\Admin\ClientsController@index')->name('admin.clients');
+    Route::get('clients/search/', 'Panel\Admin\ClientsController@search')->name('admin.clients.search');
     Route::get('agendamentos/', 'Panel\Admin\AgendamentosController@index')->name('admin.agendamentos');
 
     
