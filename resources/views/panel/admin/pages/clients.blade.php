@@ -50,6 +50,7 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($data as $item)
+                                    @if ($item->role == 'client')
                                     <tr>
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->name}}</td>
@@ -178,6 +179,7 @@
                                             </div>
                                         </td>
                                     </tr>
+                                    @endif
                                     @empty
                                     <tr>
                                         <td colspan="7" class="text-center">Nenhum cliente encontrado!!!</td>
