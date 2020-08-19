@@ -15,6 +15,7 @@ user: u443010989_user
 pass: !F4D&y1a
 ----------------------------------------
 EMAIL
+HOST: https://webmail.hostinger.com.br/auth
 IMAP: imap.hostinger.com.br 	993 
 SMTP: smtp.hostinger.com.br 	587 
 POP3: pop.hostinger.com.br 	    995 

@@ -31,35 +31,73 @@
                             <h3 class="card-title">Meus agendamentos</h3>
 
                             <div class="card-tools">
-                                <a href="#" data-toggle="modal" data-target="#solicitar" class="btn btn-primary"><i
-                                        class="nav-icon fa fa-plus"></i> Novo</a>
+                                <a href="#" data-toggle="modal" data-target="#solicitar" class="btn btn-primary btn-sm"><i
+                                        class="nav-icon fa fa-plus"></i> Solicitar</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table text-nowrap">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Data solicitação</th>
                                         <th>Nome</th>
                                         <th>Telefone</th>
-                                        <th>E-mail</th>
+                                        <th>Data solicitação</th>
                                         <th>Status</th>
+                                        <th>Data consulta</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($data as $item)
-                                    <tr>
+                                    <tr class="{{ $item->status == 'Aprovada' ? 'badge-info' : '' }}">
                                         <td>{{$item->id}}</td>
-                                        <td>{{date('d/m/Y H:i:s', strtotime($item->created_at))}}</td>
                                         <td>{{$item->user->name}}</td>
                                         <td>{{$item->user->fone}}</td>
-                                        <td>{{$item->user->email}}</td>
+                                        <td>{{date('d/m/Y H:i:s', strtotime($item->created_at))}}</td>
                                         <td>{{$item->status}}</td>
                                         <td>
-                                            <a href=""><i class="nav-icon fa fa-views"></i></a>
+                                            @if ($item->data_consulta == true)
+                                            {{date('d/m/Y', strtotime($item->data_consulta))}} às {{$item->horario}}
+                                            @else
+                                            Aguarde...
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($item->content == true)
+                                            <a href="#" title="Observação" data-toggle="modal"
+                                                data-target="#obs{{$item->id}}">
+                                                <i class="far fa-comments" style="color: white;"></i>
+                                            </a>
+                                            <!-- Modal retirada-->
+                                            <div class="modal fade" id="obs{{$item->id}}" tabindex="-1" role="dialog"
+                                                aria-labelledby="obs{{$item->id}}" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header text-center">
+                                                            <h5 class="modal-title" id="exampleModalLabel"
+                                                                style="color: #999999;">Observação
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="modal-body">
+                                                                <p style="color: #999999;">{{$item->content}}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Fechar</button>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
                                         </td>
                                     </tr>
                                     @empty

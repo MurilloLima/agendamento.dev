@@ -46,7 +46,7 @@
                                 </thead>
                                 <tbody>
                                     @forelse ($data as $item)
-                                    <tr class="{{ $item->status == 'Aprovada' ? 'badge-success' : '' }}">
+                                    <tr class="{{ $item->status == 'Aprovada' ? 'badge-info' : '' }}">
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->user->name}}</td>
                                         <td>{{$item->user->fone}}</td>
@@ -55,6 +55,8 @@
                                         <td>
                                             @if ($item->data_consulta == true)
                                             {{date('d/m/Y', strtotime($item->data_consulta))}} às {{$item->horario}}
+                                            @else 
+                                            Aguardando...
                                             @endif
                                         </td>
                                         <td>

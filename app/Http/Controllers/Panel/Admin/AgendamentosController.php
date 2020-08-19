@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Panel\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Mail\AgendarAdmin;
 use App\Models\Agenda;
+use Illuminate\Support\Facades\Mail;
 
 class AgendamentosController extends Controller
 {
@@ -16,7 +18,8 @@ class AgendamentosController extends Controller
 
     public function store(Request $request)
     {
-        Agenda::create($request->all());
+        $data = Agenda::create($request->all());
+        Mail::send(new AgendarAdmin($data));
         return redirect()->back()->with('success', 'Agendamento de consulta realizada com sucesso.');
     }
 
@@ -24,6 +27,7 @@ class AgendamentosController extends Controller
     {
         $data = Agenda::find($id);
         $data->update($request->all());
+        Mail::send(new AgendarAdmin($data));
         return redirect()->back()->with('success', 'Agendamento de consulta realizada com sucesso.');
     }
 }
