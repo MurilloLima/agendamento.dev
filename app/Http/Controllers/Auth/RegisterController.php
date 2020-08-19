@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
-use App\Models\Agenda;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -66,6 +65,7 @@ class RegisterController extends Controller
             'cep' => 'required',
             'profissao' => 'required',
             'fone' => 'required',
+            'img' => 'required|mimes:jpg,png,jpeg|max:4080',
         ]);
     }
 
@@ -75,8 +75,12 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \App\User
      */
-    protected function create(array $data)
+    public function create(array $data)
     {
+        $file_extention = $data['img']->getClientOriginalExtension();
+        $file_name = time() . rand(99, 999).'.'. $file_extention;
+       
+        $file_path = $data['img']->storeAs('upload', $file_name, 'public');
         $data = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
@@ -93,6 +97,7 @@ class RegisterController extends Controller
             'cep' => $data['cep'],
             'profissao' => $data['profissao'],
             'fone' => $data['fone'],
+            'img' => $file_name
         ]);
         Profile::create([
             'user_id' => $data->id

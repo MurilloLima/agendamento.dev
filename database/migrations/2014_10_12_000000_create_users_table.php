@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('cep', 15);
             $table->string('profissao')->nullable();
             $table->string('fone');
+            $table->string('img');
             $table->rememberToken();
             $table->timestamps();
         });
