@@ -25,40 +25,189 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-12">
+                    @include('panel.includes.alerts')
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title">Lista de agendamentos</h3>
-
-                            {{-- <div class="card-tools">
-                                <a href="#" data-toggle="modal" data-target="#solicitar" class="btn btn-primary"><i
-                                        class="nav-icon fa fa-plus"></i> Novo</a>
-                            </div> --}}
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body table-responsive p-0">
-                            <table class="table table-hover text-nowrap">
+                            <table class="table text-nowrap">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Data solicitação</th>
                                         <th>Nome</th>
                                         <th>Telefone</th>
-                                        <th>E-mail</th>
+                                        <th>Data solicitação</th>
                                         <th>Status</th>
+                                        <th>Data consulta</th>
                                         <th>#</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @forelse ($data as $item)
-                                    <tr>
+                                    <tr class="{{ $item->status == 'Aprovada' ? 'badge-success' : '' }}">
                                         <td>{{$item->id}}</td>
-                                        <td>{{date('d/m/Y H:i:s', strtotime($item->created_at))}}</td>
                                         <td>{{$item->user->name}}</td>
                                         <td>{{$item->user->fone}}</td>
-                                        <td>{{$item->user->email}}</td>
+                                        <td>{{date('d/m/Y', strtotime($item->created_at))}}</td>
                                         <td>{{$item->status}}</td>
                                         <td>
-                                            <a href=""><i class="nav-icon fa fa-views"></i></a>
+                                            @if ($item->data_consulta == true)
+                                            {{date('d/m/Y', strtotime($item->data_consulta))}} às {{$item->horario}}
+                                            @endif
+                                        </td>
+                                        <td>
+                                            @if ($item->content == true)
+                                            <a href="#" title="Observação" data-toggle="modal"
+                                                data-target="#obs{{$item->id}}">
+                                                <i class="far fa-comments" style="color: white;"></i>
+                                            </a>
+                                            <!-- Modal retirada-->
+                                            <div class="modal fade" id="obs{{$item->id}}" tabindex="-1" role="dialog"
+                                                aria-labelledby="obs{{$item->id}}" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header text-center">
+                                                            <h5 class="modal-title" id="exampleModalLabel"
+                                                                style="color: #999999;">Observação
+                                                            </h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <div class="modal-body">
+                                                                <p style="color: #999999;">{{$item->content}}</p>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary"
+                                                                    data-dismiss="modal">Fechar</button>
+
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+                                            @if ($item->status == 'Em analise')
+                                            <a href="#" data-toggle="modal" data-target="#agendar{{$item->id}}"
+                                                title="Agendar"><i class="nav-icon fa fa-calendar-check"></i>
+                                            </a>
+                                            <!-- Modal agendar-->
+                                            <div class="modal fade" id="agendar{{$item->id}}" tabindex="-1"
+                                                role="dialog" aria-labelledby="agendar{{$item->id}}" aria-hidden="true">
+                                                <div class="modal-dialog" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header text-center">
+                                                            <h5 class="modal-title" id="exampleModalLabel">Novo
+                                                                agendamento</h5>
+                                                            <button type="button" class="close" data-dismiss="modal"
+                                                                aria-label="Close">
+                                                                <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <form
+                                                                action="{{ route('admin.agendamentos.update', ['id'=>$item->id]) }}"
+                                                                class="navbar-form" method="post">
+                                                                @csrf
+                                                                @method('post')
+                                                                <input type="hidden" name="status" value="Aprovada">
+                                                                <div class="modal-body">
+                                                                    <div class="text-center">
+                                                                        <h4>Agendar consultar para o cliente.</h4>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <label
+                                                                            class="col-sm-3 col-form-label">{{ __('Nome') }}</label>
+                                                                        <div class="col-sm-9">
+                                                                            <div
+                                                                                class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
+                                                                                <input
+                                                                                    class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                                                    name="name" type="text"
+                                                                                    placeholder="Seu nome"
+                                                                                    value="{{$item->user->name, old('name') }}"
+                                                                                    required />
+                                                                                @if ($errors->has('name'))
+                                                                                <span id="email-error"
+                                                                                    class="error text-danger">{{ $errors->first('name') }}</span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                    <div class="row">
+                                                                        <label
+                                                                            class="col-sm-3 col-form-label">{{ __('Data consulta') }}</label>
+                                                                        <div class="col-sm-9">
+                                                                            <div
+                                                                                class="form-group{{ $errors->has('data_consulta') ? ' has-danger' : '' }}">
+                                                                                <input
+                                                                                    class="form-control date{{ $errors->has('data_consulta') ? ' is-invalid' : '' }}"
+                                                                                    name="data_consulta" type="date"
+                                                                                    placeholder="00/00/0000"
+                                                                                    value="{{old('data_consulta') }}"
+                                                                                    required />
+                                                                                @if ($errors->has('data_consulta'))
+                                                                                <span id="email-error"
+                                                                                    class="error text-danger">{{ $errors->first('data_consulta') }}</span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <label
+                                                                            class="col-sm-3 col-form-label">{{ __('Horário') }}</label>
+                                                                        <div class="col-sm-9">
+                                                                            <div
+                                                                                class="form-group{{ $errors->has('data_consulta') ? ' has-danger' : '' }}">
+                                                                                <input
+                                                                                    class="form-control date{{ $errors->has('horario') ? ' is-invalid' : '' }}"
+                                                                                    name="horario" type="time"
+                                                                                    placeholder="00:00"
+                                                                                    value="{{old('horario') }}"
+                                                                                    required />
+                                                                                @if ($errors->has('horario'))
+                                                                                <span id="email-error"
+                                                                                    class="error text-danger">{{ $errors->first('horario') }}</span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <label
+                                                                            class="col-sm-3 col-form-label">{{ __('Observação') }}</label>
+                                                                        <div class="col-sm-9">
+                                                                            <div
+                                                                                class="form-group{{ $errors->has('content') ? ' has-danger' : '' }}">
+                                                                                <textarea name="content"
+                                                                                    class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}">
+                                                                                </textarea>
+                                                                                @if ($errors->has('content'))
+                                                                                <span id="content-error"
+                                                                                    class="error text-danger">{{ $errors->first('content') }}</span>
+                                                                                @endif
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button" class="btn btn-secondary"
+                                                                        data-dismiss="modal">Cancelar</button>
+                                                                    <button type="submit"
+                                                                        class="btn btn-primary">Agendar</button>
+                                                                </div>
+                                                            </form>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
                                         </td>
                                     </tr>
                                     @empty

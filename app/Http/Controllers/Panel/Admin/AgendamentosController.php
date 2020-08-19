@@ -13,4 +13,17 @@ class AgendamentosController extends Controller
         $data = Agenda::orderby('created_at', 'desc')->paginate();
         return view('panel.admin.pages.agendamentos', compact('data'));
     }
+
+    public function store(Request $request)
+    {
+        Agenda::create($request->all());
+        return redirect()->back()->with('success', 'Agendamento de consulta realizada com sucesso.');
+    }
+
+    public function update($id, Request $request)
+    {
+        $data = Agenda::find($id);
+        $data->update($request->all());
+        return redirect()->back()->with('success', 'Agendamento de consulta realizada com sucesso.');
+    }
 }

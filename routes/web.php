@@ -16,8 +16,11 @@ Route::group(['prefix' => 'panel/admin', 'middleware' => ['auth', 'admin.check']
     Route::get('/', 'Panel\Admin\HomeController@index')->name('admin.index');
     Route::get('clients/', 'Panel\Admin\ClientsController@index')->name('admin.clients');
     Route::get('clients/search/', 'Panel\Admin\ClientsController@search')->name('admin.clients.search');
+    
+    //adgendamento
     Route::get('agendamentos/', 'Panel\Admin\AgendamentosController@index')->name('admin.agendamentos');
-
+    Route::post('agendamento/store/', 'Panel\Admin\AgendamentosController@store')->name('admin.agendamentos.store');
+    Route::post('agendamento/update/{id}', 'Panel\Admin\AgendamentosController@update')->name('admin.agendamentos.update');
     
 });
 
