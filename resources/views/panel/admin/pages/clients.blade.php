@@ -58,7 +58,7 @@
                                         <td>{{$item->email}}</td>
                                         <td>{{date('d/m/Y H:i:s', strtotime($item->created_at))}}</td>
                                         <td>
-                                            <a href="" title="Imprimir"><i class="nav-icon fa fa-print"></i>
+                                            <a href="{{ route('admin.clients.view', ['id'=>$item->id]) }}" target="_blank" title="Imprimir"><i class="nav-icon fa fa-print"></i>
                                             </a>
                                             <a href="#" data-toggle="modal" data-target="#agendar{{$item->id}}"
                                                 title="Agendar"><i class="nav-icon fa fa-calendar-alt"></i>
