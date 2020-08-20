@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\AgendarClient;
 use App\Models\Agenda;
+use App\Models\Notification;
 use App\Models\Profile;
 use Illuminate\Support\Facades\Mail;
 
@@ -24,6 +25,9 @@ class AgendamentosController extends Controller
 
     public function store(Request $request)
     {
+        Notification::create([
+            'user_id' => auth()->user()->id,
+        ]);
         $data = Agenda::create($request->all());
         Mail::send(new AgendarClient($data));
         return redirect()->back()->with('success', 'Solicitação enviada com sucesso! Aguarde marcaremos a data e hora para a sua consulta.');

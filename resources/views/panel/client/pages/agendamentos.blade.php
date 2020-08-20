@@ -31,8 +31,8 @@
                             <h3 class="card-title">Meus agendamentos</h3>
 
                             <div class="card-tools">
-                                <a href="#" data-toggle="modal" data-target="#solicitar" class="btn btn-primary btn-sm"><i
-                                        class="nav-icon fa fa-plus"></i> Solicitar</a>
+                                <a href="#" data-toggle="modal" data-target="#solicitar"
+                                    class="btn btn-primary btn-sm"><i class="nav-icon fa fa-plus"></i> Solicitar</a>
                             </div>
                         </div>
                         <!-- /.card-header -->
@@ -70,35 +70,36 @@
                                                 data-target="#obs{{$item->id}}">
                                                 <i class="far fa-comments" style="color: white;"></i>
                                             </a>
-                                            <!-- Modal retirada-->
-                                            <div class="modal fade" id="obs{{$item->id}}" tabindex="-1" role="dialog"
-                                                aria-labelledby="obs{{$item->id}}" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header text-center">
-                                                            <h5 class="modal-title" id="exampleModalLabel"
-                                                                style="color: #999999;">Observação
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="modal-body">
-                                                                <p style="color: #999999;">{{$item->content}}</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Fechar</button>
 
-                                                            </div>
+                                            @endif
+                                        </td>
+                                        <!-- Modal obs-->
+                                        <div class="modal fade" id="obs{{$item->id}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="obs{{$item->id}}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header text-center">
+                                                        <h5 class="modal-title" id="exampleModalLabel"
+                                                            style="color: #999999;">Observação
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="modal-body">
+                                                            <p style="color: #999999;">{{$item->content}}</p>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Fechar</button>
+
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            @endif
-                                        </td>
+                                        </div>
                                     </tr>
                                     @empty
                                     <tr>

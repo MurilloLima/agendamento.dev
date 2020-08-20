@@ -55,7 +55,7 @@
                                         <td>
                                             @if ($item->data_consulta == true)
                                             {{date('d/m/Y', strtotime($item->data_consulta))}} às {{$item->horario}}
-                                            @else 
+                                            @else
                                             Aguardando...
                                             @endif
                                         </td>
@@ -65,33 +65,7 @@
                                                 data-target="#obs{{$item->id}}">
                                                 <i class="far fa-comments" style="color: white;"></i>
                                             </a>
-                                            <!-- Modal retirada-->
-                                            <div class="modal fade" id="obs{{$item->id}}" tabindex="-1" role="dialog"
-                                                aria-labelledby="obs{{$item->id}}" aria-hidden="true">
-                                                <div class="modal-dialog" role="document">
-                                                    <div class="modal-content">
-                                                        <div class="modal-header text-center">
-                                                            <h5 class="modal-title" id="exampleModalLabel"
-                                                                style="color: #999999;">Observação
-                                                            </h5>
-                                                            <button type="button" class="close" data-dismiss="modal"
-                                                                aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                            </button>
-                                                        </div>
-                                                        <div class="modal-body">
-                                                            <div class="modal-body">
-                                                                <p style="color: #999999;">{{$item->content}}</p>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary"
-                                                                    data-dismiss="modal">Fechar</button>
 
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
                                             @endif
                                             @if ($item->status == 'Em analise')
                                             <a href="#" data-toggle="modal" data-target="#agendar{{$item->id}}"
@@ -211,6 +185,32 @@
                                             </div>
                                             @endif
                                         </td>
+                                        <!-- Modal obs -->
+                                        <div class="modal fade" id="obs{{$item->id}}" tabindex="-1" role="dialog"
+                                            aria-labelledby="obs{{$item->id}}" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                                <div class="modal-content">
+                                                    <div class="modal-header text-center">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Observação
+                                                        </h5>
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                            aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="modal-body">
+                                                            {{$item->content}}
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary"
+                                                                data-dismiss="modal">Fechar</button>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </tr>
                                     @empty
                                     <tr>

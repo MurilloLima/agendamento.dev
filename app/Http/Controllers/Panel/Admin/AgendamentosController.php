@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\AgendarAdmin;
 use App\Models\Agenda;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Mail;
 
 class AgendamentosController extends Controller
@@ -29,5 +30,11 @@ class AgendamentosController extends Controller
         $data->update($request->all());
         Mail::send(new AgendarAdmin($data));
         return redirect()->back()->with('success', 'Agendamento de consulta realizada com sucesso.');
+    }
+
+    public function notificatonDelete($id)
+    {
+        Notification::destroy($id);
+        return redirect()->to('/panel/admin/agendamentos');
     }
 }

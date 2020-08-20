@@ -23,6 +23,9 @@ Route::group(['prefix' => 'panel/admin', 'middleware' => ['auth', 'admin.check']
     Route::post('agendamento/store/', 'Panel\Admin\AgendamentosController@store')->name('admin.agendamentos.store');
     Route::post('agendamento/update/{id}', 'Panel\Admin\AgendamentosController@update')->name('admin.agendamentos.update');
     
+    //notification
+    Route::get('notification/{id}', 'Panel\Admin\AgendamentosController@notificatonDelete')->name('admin.notificaton.delete');
+
 });
 
 Route::get('/', function () {
