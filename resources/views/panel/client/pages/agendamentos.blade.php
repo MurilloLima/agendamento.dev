@@ -55,7 +55,7 @@
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->user->name}}</td>
                                         <td>{{$item->user->fone}}</td>
-                                        <td>{{date('d/m/Y H:i:s', strtotime($item->created_at))}}</td>
+                                        <td>{{date('d/m/Y', strtotime($item->created_at))}}</td>
                                         <td>{{$item->status}}</td>
                                         <td>
                                             @if ($item->data_consulta == true)
@@ -79,8 +79,7 @@
                                             <div class="modal-dialog" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header text-center">
-                                                        <h5 class="modal-title" id="exampleModalLabel"
-                                                            style="color: #999999;">Observação
+                                                        <h5 class="modal-title" id="exampleModalLabel">Observação
                                                         </h5>
                                                         <button type="button" class="close" data-dismiss="modal"
                                                             aria-label="Close">
@@ -89,7 +88,7 @@
                                                     </div>
                                                     <div class="modal-body">
                                                         <div class="modal-body">
-                                                            <p style="color: #999999;">{{$item->content}}</p>
+                                                            <p>{{$item->content}}</p>
                                                         </div>
                                                         <div class="modal-footer">
                                                             <button type="button" class="btn btn-secondary"

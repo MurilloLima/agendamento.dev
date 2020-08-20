@@ -26,6 +26,10 @@ Route::group(['prefix' => 'panel/admin', 'middleware' => ['auth', 'admin.check']
     //notification
     Route::get('notification/{id}', 'Panel\Admin\AgendamentosController@notificatonDelete')->name('admin.notificaton.delete');
 
+    //profile
+    Route::get('profile/', 'Panel\Admin\ProfileController@profile')->name('admin.profile');
+    Route::post('profile/update/', 'Panel\Admin\ProfileController@update')->name('admin.profile.update');
+
 });
 
 Route::get('/', function () {

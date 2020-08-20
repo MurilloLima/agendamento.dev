@@ -35,7 +35,7 @@
                 <span class="dropdown-item dropdown-header">{{count(App\Models\Notification::all())}}
                     Notificações</span>
                 <div class="dropdown-divider"></div>
-                @forelse (App\Models\Notification::all() as $item)
+                @forelse (App\Models\Notification::orderby('created_at', 'desc')->take(6)->get() as $item)
                 <a href="{{ route('admin.notificaton.delete', ['id'=>$item->id]) }}" class="dropdown-item">
                     <i class="nav-icon fa fa-calendar-check"></i> {{$item->user->name}}
                     <span class="float-right text-muted text-sm">3 mins</span>
@@ -92,6 +92,16 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('admin.agendamentos') }}"
+                        class="nav-link{{ $activePage == 'admin.agendamentos' ? ' active' : '' }}">
+                        <i class="nav-icon fas fa-th"></i>
+                        <p>
+                            Agendamentos
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('admin.clients') }}"
                         class="nav-link{{ $activePage == 'admin.clients' ? ' active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
@@ -101,12 +111,13 @@
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-item">
-                    <a href="{{ route('admin.agendamentos') }}"
-                        class="nav-link{{ $activePage == 'admin.agendamentos' ? ' active' : '' }}">
-                        <i class="nav-icon fas fa-th"></i>
+                    <a href="{{ route('admin.profile') }}"
+                        class="nav-link{{ $activePage == 'admin.profile' ? ' active' : '' }}">
+                        <i class="nav-icon fas fa-user"></i>
                         <p>
-                            Agendamentos
+                            Perfil
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
