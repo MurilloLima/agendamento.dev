@@ -38,10 +38,12 @@
                 @forelse (App\Models\Notification::orderby('created_at', 'desc')->take(6)->get() as $item)
                 <a href="{{ route('admin.notificaton.delete', ['id'=>$item->id]) }}" class="dropdown-item">
                     <i class="nav-icon fa fa-calendar-check"></i> {{$item->user->name}}
-                    <span class="float-right text-muted text-sm">3 mins</span>
+                    <span class="float-right text-muted text-sm">{{$item->created_at->diffForHumans()}}</span>
                 </a>
                 @empty
-                <span>Nenhum notificação</span>
+                <div class="text-center">
+                    <span>Nenhuma notificação</span>
+                </div>
                 @endforelse
 
                 <div class="dropdown-divider"></div>

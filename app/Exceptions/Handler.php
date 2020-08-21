@@ -2,6 +2,7 @@
 
 namespace App\Exceptions;
 
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -46,6 +47,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        // Carbon::setLocale('pt_BR');
         return parent::render($request, $exception);
     }
 }
