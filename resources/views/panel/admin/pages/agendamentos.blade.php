@@ -61,16 +61,26 @@
                                         </td>
                                         <td>
                                             @if ($item->content == true)
-                                            <a href="#" title="Observação" data-toggle="modal"
-                                                data-target="#obs{{$item->id}}">
+                                            <a href="" title="Observações interna">
                                                 <i class="far fa-comments" style="color: white;"></i>
                                             </a>
-
                                             @endif
                                             @if ($item->status == 'Em analise')
                                             <a href="#" data-toggle="modal" data-target="#agendar{{$item->id}}"
                                                 title="Agendar"><i class="nav-icon fa fa-calendar-check"></i>
                                             </a>
+                                            
+                                            <a href="{{ route('admin.comments',['id'=>$item->user_id]) }}" title="Observação">
+                                                <i class="far fa-comments"></i>
+                                            </a>
+
+                                            <a href="{{ route('admin.agendamento.delete', ['id'=>$item->id]) }}">
+                                                <i class="far fa-edit"></i>
+                                            </a>
+                                            <a href="{{ route('admin.agendamento.delete', ['id'=>$item->id]) }}">
+                                                <i class="far fa-trash-alt"></i>
+                                            </a>
+
                                             <!-- Modal agendar-->
                                             <div class="modal fade" id="agendar{{$item->id}}" tabindex="-1"
                                                 role="dialog" aria-labelledby="agendar{{$item->id}}" aria-hidden="true">

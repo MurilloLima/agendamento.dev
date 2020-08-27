@@ -37,4 +37,11 @@ class AgendamentosController extends Controller
         Notification::destroy($id);
         return redirect()->to('/panel/admin/agendamentos');
     }
+
+    public function delete($id)
+    {
+        Agenda::destroy($id);
+        return redirect()->back()->with('success', 'Agendamento deletado realizada com sucesso.');
+
+    }
 }

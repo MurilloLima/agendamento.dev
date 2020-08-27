@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Models\Agenda;
+use App\Models\Comment;
 use App\Models\Notification;
 use App\Models\Profile;
 use Illuminate\Notifications\Notifiable;
@@ -59,5 +60,10 @@ class User extends Authenticatable
     public function notifications()
     {
         return $this->hasMany(Notification::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

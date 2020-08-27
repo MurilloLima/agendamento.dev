@@ -58,10 +58,21 @@
                                         <td>{{$item->email}}</td>
                                         <td>{{date('d/m/Y H:i:s', strtotime($item->created_at))}}</td>
                                         <td>
-                                            <a href="{{ route('admin.clients.view', ['id'=>$item->id]) }}" target="_blank" title="Imprimir"><i class="nav-icon fa fa-print"></i>
+                                            <a href="{{ route('admin.comments', ['id'=>$item->id]) }}" title="Observações interna">
+                                                <i class="fas fa-comment-alt"></i>
+                                            </a>
+                                            <a href="{{ route('admin.clients.view', ['id'=>$item->id]) }}"
+                                                target="_blank" title="Imprimir"><i class="nav-icon fa fa-print"></i>
                                             </a>
                                             <a href="#" data-toggle="modal" data-target="#agendar{{$item->id}}"
                                                 title="Agendar"><i class="nav-icon fa fa-calendar-alt"></i>
+                                            </a>
+                                            <a href="{{ route('admin.user.edit', ['id'=>$item->id]) }}" title="Editar">
+                                                <i class="fas fa-user-edit"></i>
+                                            </a>
+                                            <a href="{{ route('admin.user.delete', ['id'=>$item->id]) }}"
+                                                title="Excluir">
+                                                <i class="fas fa-user-times"></i>
                                             </a>
 
                                             <!-- Modal agendar-->

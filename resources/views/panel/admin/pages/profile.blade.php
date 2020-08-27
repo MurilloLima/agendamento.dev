@@ -34,9 +34,17 @@
                             <div class="card-body">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="settings">
-                                        <form action="{{ route('admin.profile.update') }}" method="POST"
-                                            class="form-horizontal">
+                                        <form action="{{ route('admin.profile.update', ['id'=>auth()->user()->id]) }}" method="POST"
+                                            class="form-horizontal" enctype="multipart/form-data">
                                             {{ csrf_field() }}
+                                            <div class="form-group row">
+                                                <label for="inputEmail" class="col-sm-2 col-form-label">Avatar</label>
+                                                <div class="col-sm-10">
+                                                    <input type="file" class="form-control" id="inputEmail"
+                                                        name="img" value="{{auth()->user()->img, old('img')}}"
+                                                        placeholder="">
+                                                </div>
+                                            </div>
                                             <div class="form-group row">
                                                 <label for="inputName" class="col-sm-2 col-form-label">Nome</label>
                                                 <div class="col-sm-10">
