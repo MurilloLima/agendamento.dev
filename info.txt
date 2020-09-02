@@ -4,15 +4,15 @@ Senha: shutdown8600
 Coloca no domínio: jnsolucoes.tech/clinica
 ---------------------------------------
 FTP:
-host: ftp://31.170.161.51	ftp://jnsolucoesinformatica.tech
-user: u443010989.agenda 
-pass: 9gDTJVPgsNi$
+host: ftp://clinicawanzeller.com ou ftp://31.170.161.51
+user: u866432174
+pass: Wanzeller123
 ---------------------------------------
 MYSQL:
-host: https://auth-db137.hostinger.com.br/?_ga=2.52841258.364699475.1597700561-487089661.1597080509
-banco: u443010989_agenda 
-user: u443010989_user  
-pass: !F4D&y1a
+host: https://auth-db137.hostinger.com.br/?_ga=2.250900096.748732029.1599050677-487089661.1597080509
+banco:  u866432174_wanzeller 
+user:   u866432174_root 
+pass:   Wanzeller123
 ----------------------------------------
 EMAIL
 HOST: https://webmail.hostinger.com.br/auth

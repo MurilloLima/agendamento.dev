@@ -61,7 +61,7 @@
                                         </td>
                                         <td>
                                             @if ($item->content == true)
-                                            <a href="" title="Observações interna">
+                                            <a href="#" title="Observações interna" data-toggle="modal" data-target="#obs{{$item->id}}">
                                                 <i class="far fa-comments" style="color: white;"></i>
                                             </a>
                                             @endif
@@ -70,13 +70,10 @@
                                                 title="Agendar"><i class="nav-icon fa fa-calendar-check"></i>
                                             </a>
                                             
-                                            <a href="{{ route('admin.comments',['id'=>$item->user_id]) }}" title="Observação">
+                                            <a href="{{ route('admin.comments',['id'=>$item->user_id]) }}" title="Observação interna">
                                                 <i class="far fa-comments"></i>
                                             </a>
 
-                                            <a href="{{ route('admin.agendamento.delete', ['id'=>$item->id]) }}">
-                                                <i class="far fa-edit"></i>
-                                            </a>
                                             <a href="{{ route('admin.agendamento.delete', ['id'=>$item->id]) }}">
                                                 <i class="far fa-trash-alt"></i>
                                             </a>
