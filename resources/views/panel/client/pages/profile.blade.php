@@ -976,9 +976,24 @@
                                     <div class="col-sm-12">
                                         <label for="">Seu desespero é tamanho a ponto de desejar morrer, ferir-se ou
                                             prejudicar-se em função desse desespero? </label>
-                                        <input type="text" class="form-control" placeholder="Tempo..."
-                                            value="{{auth()->user()->question->seu_desespero_e_tamanho_a_ponto_de_desejar_morrer, old('seu_desespero_e_tamanho_a_ponto_de_desejar_morrer')}}"
-                                            name="seu_desespero_e_tamanho_a_ponto_de_desejar_morrer">
+                                            <div class="form-group" style="margin-left: 10px;">
+                                                <div class="col-md-6">
+                                                    {!! Form::radio('seu_desespero_e_tamanho_a_ponto_de_desejar_morrer', 1,
+                                                    auth()->user()->question->seu_desespero_e_tamanho_a_ponto_de_desejar_morrer == 1 ?
+                                                    'checked' : '',
+                                                    ['class'=>'form-check-input'])
+                                                    !!}
+                                                    {!! Form::label('Sim', 'Sim', ['class'=>'form-check-label']) !!}
+                                                </div>
+                                                <div class="col-md-6">
+                                                    {!! Form::radio('seu_desespero_e_tamanho_a_ponto_de_desejar_morrer', 0,
+                                                    auth()->user()->question->seu_desespero_e_tamanho_a_ponto_de_desejar_morrer == 0 ?
+                                                    'checked' : '',
+                                                    ['class'=>'form-check-input'])
+                                                    !!}
+                                                    {!! Form::label('Não', 'Não', ['class'=>'form-check-label']) !!}
+                                                </div>
+                                            </div>   
                                     </div>
                                 </div>
                                 <div class="row">
