@@ -8,6 +8,8 @@
                 <img src="{{ asset('img/logo.png') }}" alt="">
                 <h1>Bem vindo!</h1>
                 <p>Sistema de agendamento de consultas</p>
+                <p>Mentenha sempre seus dados atualizado! clique no botão abaixo para atualizar.</p>
+                <a href="{{ route('client.profile') }}" class="btn btn-warning btn-lg">Atualizar formulário</a>
             </div>
         </div>
     </div>
